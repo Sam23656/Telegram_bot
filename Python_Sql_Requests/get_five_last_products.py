@@ -1,4 +1,4 @@
-from Python_Sql_Requests.connect_database import run_connection
+from .connect_database import run_connection
 
 
 def get_five_last_products():
