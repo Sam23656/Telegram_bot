@@ -97,4 +97,26 @@ BEGIN
     INSERT INTO Product(id, name, description, category_id, brand_id, price)
     VALUES (gen_random_uuid(),name, description, category_id, brand_id, price);
 END;
-$$ LANGUAGE plpgsql
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION update_product(
+    product_id UUID,
+    product_name VARCHAR(255),
+    product_description VARCHAR(255),
+    product_category_id INT,
+    product_brand_id INT,
+    product_price DECIMAL(10, 2)
+) RETURNS VOID AS $$
+BEGIN
+    UPDATE Product
+    SET
+        name = product_name,
+        description = product_description,
+        category_id = product_category_id,
+        brand_id = product_brand_id,
+        price = product_price
+    WHERE
+        id = product_id;
+END;
+$$ LANGUAGE plpgsql;

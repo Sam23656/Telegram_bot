@@ -10,6 +10,7 @@ from .Products.get_all_products_id import get_all_products_id
 from .Products.get_product_by_id import get_product_by_id
 from .Products.delete_products_by_id import delete_products_by_id
 from .Products.add_product import add_product
+from .Products.update_product import update_product
 
 __all__ = [
     "get_all_products",
@@ -24,4 +25,5 @@ __all__ = [
     "get_product_by_id",
     "delete_products_by_id",
     "add_product",
+    "update_product"
 ]
