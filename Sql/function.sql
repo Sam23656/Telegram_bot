@@ -71,3 +71,30 @@ BEGIN
     DELETE FROM Product WHERE id = product_id;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_category_id_by_name(category_name VARCHAR(255))
+RETURNS INT AS $$
+BEGIN
+    RETURN (SELECT id FROM Category WHERE name = category_name);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_brand_id_by_name(brand_name VARCHAR(255))
+RETURNS INT AS $$
+BEGIN
+    RETURN (SELECT id FROM Brand WHERE name = brand_name);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION add_product(
+    name VARCHAR(255),
+    description VARCHAR(255),
+    category_id INT,
+    brand_id INT,
+    price DECIMAL(10, 2)
+) RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Product(id, name, description, category_id, brand_id, price)
+    VALUES (gen_random_uuid(),name, description, category_id, brand_id, price);
+END;
+$$ LANGUAGE plpgsql

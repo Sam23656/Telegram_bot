@@ -20,10 +20,9 @@ async def cmd_start(message: types.Message):
 
 
 async def main():
-    dp.include_router(get_products_router)
-    dp.include_router(categories_router)
-    dp.include_router(brands_router)
-    dp.include_router(delete_products_router)
+    routes = [get_products_router, categories_router, brands_router, delete_products_router, add_products_router]
+    for route in routes:
+        dp.include_router(route)
     await dp.start_polling(bot)
 
 

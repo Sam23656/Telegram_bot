@@ -6,13 +6,10 @@ def get_all_categories():
     cursor.execute("SELECT * FROM GetAllCategories")
     products = cursor.fetchall()
     result = ""
-    i = 1
     for elem in products:
-        result += f"{i}. "
         for elem2 in elem:
             result += str(elem2)
             result += "   "
-        i += 1
         result += "\n"
     if result == '':
         result = 'No categories'

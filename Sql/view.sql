@@ -31,6 +31,7 @@ LIMIT 10;
 
 CREATE OR REPLACE VIEW GetAllCategories AS
 SELECT
+    c.id AS category_id,
     c.name AS category_name
 FROM
     Category c;
@@ -38,6 +39,7 @@ FROM
 
 CREATE OR REPLACE VIEW GetAllBrands AS
 SELECT
+    b.id AS brand_id,
     b.name AS brand_name
 FROM
     Brand b;
