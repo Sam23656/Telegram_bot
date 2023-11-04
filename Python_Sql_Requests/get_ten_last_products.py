@@ -1,9 +1,9 @@
 from .connect_database import run_connection
 
 
-def get_five_last_products():
+def get_ten_last_products():
     connect, cursor = run_connection()
-    cursor.execute("SELECT * FROM Last5Products")
+    cursor.execute("SELECT * FROM Last10Products")
     products = cursor.fetchall()
     result = ""
     i = 1

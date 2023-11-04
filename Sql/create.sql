@@ -17,12 +17,17 @@ CREATE TABLE Category(
     name VARCHAR(255)
 );
 
+CREATE TABLE Brend(
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255)
+);
 
 CREATE TABLE Product(
     id UUID DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY,
     name VARCHAR(255),
     description VARCHAR(255),
     category_id INT REFERENCES Category(id),
+    brend_id INT REFERENCES Brend(id),
     price DECIMAL(10, 2)
 );
 

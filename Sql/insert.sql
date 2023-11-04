@@ -7,11 +7,16 @@ VALUES
 ('Electronics'),
 ('Clothing');
 
-INSERT INTO Product(id ,name, description, category_id, price)
+INSERT INTO Brend(name)
 VALUES
-(gen_random_uuid(),'iPhone 15', 'The latest iPhone', 1, 999.99),
-(gen_random_uuid(),'T-Shirt', 'A comfortable shirt', 2, 19.99),
-(gen_random_uuid(),'Jeans', 'A pair of jeans', 2, 29.99),
-(gen_random_uuid(),'Socks', 'A pair of socks', 2, 9.99),
-(gen_random_uuid(),'Shoes', 'A pair of shoes', 2, 49.99);
+('Apple'),
+('Samsung'),
+('Adidas'),
+('Puma');
 
+INSERT INTO Product(id ,name, description, category_id, brend_id, price)
+VALUES
+(gen_random_uuid(),'iPhone 14', 'Apple iPhone 14', 1, 1, 1000.00),
+(gen_random_uuid(),'Samsung Galaxy S21', 'Samsung Galaxy S21', 1, 2, 800.00),
+(gen_random_uuid(),'T-Shirt', 'Cotton T-Shirt', 2, 3, 50.00),
+(gen_random_uuid(),'Jeans', 'Cotton Jeans', 2, 4, 80.00);

@@ -3,7 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
-from Python_Sql_Requests import get_all_products, get_five_last_products, get_all_categories, \
+from Python_Sql_Requests import get_all_products, get_ten_last_products, get_all_categories, \
     get_products_by_category_name
 
 products_router = Router()
@@ -18,9 +18,9 @@ async def all_products(message: types.Message):
     await message.answer(f"Products: \n{get_all_products()}")
 
 
-@products_router.message(F.text == 'Последние 5 продуктов')
-async def last_five_products(message: types.Message):
-    await message.answer(f"Products: \n{get_five_last_products()}")
+@products_router.message(F.text == 'Последние 10 продуктов')
+async def last_ten_products(message: types.Message):
+    await message.answer(f"Products: \n{get_ten_last_products()}")
 
 
 @products_router.message(F.text == 'Найти по категории')
@@ -39,6 +39,15 @@ async def get_product_by_category(message: Message, state: FSMContext):
             resize_keyboard=True,
         ),
     )
+
+
+@products_router.message(F.text == 'Cancel')
+async def cancel(message: types.Message, state: FSMContext):
+    current_state = await state.get_state()
+    if current_state is None:
+        return
+    await state.clear()
+    await message.answer('Cancelled', reply_markup=types.ReplyKeyboardRemove())
 
 
 @products_router.message(GetProductByCategoryForm.enter_category)
