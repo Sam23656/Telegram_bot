@@ -1,9 +1,11 @@
-from .connect_database import run_connection
+from aiogram.exceptions import TelegramBadRequest
+
+from Python_Sql_Requests.connect_database import run_connection
 
 
-def get_all_products():
+def get_all_brands():
     connect, cursor = run_connection()
-    cursor.execute("SELECT * FROM ProductsWithCategories")
+    cursor.execute("SELECT * FROM GetAllBrands")
     products = cursor.fetchall()
     result = ""
     i = 1
@@ -14,4 +16,6 @@ def get_all_products():
             result += "   "
         i += 1
         result += "\n"
+    if result == '':
+        result = "No brands"
     return result

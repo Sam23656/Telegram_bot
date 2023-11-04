@@ -1,4 +1,6 @@
-from .connect_database import run_connection
+from aiogram.exceptions import TelegramBadRequest
+
+from Python_Sql_Requests.connect_database import run_connection
 
 
 def get_products_by_category_name(category_name):
@@ -14,4 +16,6 @@ def get_products_by_category_name(category_name):
             result += "   "
         i += 1
         result += "\n"
+    if result == '':
+        result = 'No products'
     return result

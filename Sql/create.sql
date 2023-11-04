@@ -17,7 +17,7 @@ CREATE TABLE Category(
     name VARCHAR(255)
 );
 
-CREATE TABLE Brend(
+CREATE TABLE Brand(
     id SERIAL PRIMARY KEY,
     name VARCHAR(255)
 );
@@ -27,7 +27,7 @@ CREATE TABLE Product(
     name VARCHAR(255),
     description VARCHAR(255),
     category_id INT REFERENCES Category(id),
-    brend_id INT REFERENCES Brend(id),
+    brand_id INT REFERENCES Brand(id),
     price DECIMAL(10, 2)
 );
 

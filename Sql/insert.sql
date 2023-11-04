@@ -7,14 +7,14 @@ VALUES
 ('Electronics'),
 ('Clothing');
 
-INSERT INTO Brend(name)
+INSERT INTO Brand(name)
 VALUES
 ('Apple'),
 ('Samsung'),
 ('Adidas'),
 ('Puma');
 
-INSERT INTO Product(id ,name, description, category_id, brend_id, price)
+INSERT INTO Product(id ,name, description, category_id, brand_id, price)
 VALUES
 (gen_random_uuid(),'iPhone 14', 'Apple iPhone 14', 1, 1, 1000.00),
 (gen_random_uuid(),'Samsung Galaxy S21', 'Samsung Galaxy S21', 1, 2, 800.00),
