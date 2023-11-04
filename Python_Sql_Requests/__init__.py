@@ -6,6 +6,7 @@ from .Categories.get_all_categories import get_all_categories
 from .Brands.get_all_brands import get_all_brands
 from .Products.get_all_products_id import get_all_products_id
 from .Products.get_product_by_id import get_product_by_id
+from .Products.delete_products_by_id import delete_products_by_id
 
 __all__ = [
     "get_all_products",
@@ -16,4 +17,5 @@ __all__ = [
     "get_products_by_brand_name",
     "get_all_products_id",
     "get_product_by_id",
+    "delete_products_by_id",
 ]

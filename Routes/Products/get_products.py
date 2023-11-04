@@ -3,9 +3,11 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
-from Python_Sql_Requests import *
+from Python_Sql_Requests import (get_all_products, get_all_products_id, get_product_by_id, get_all_categories,
+                                 get_products_by_brand_name, get_products_by_category_name, get_ten_last_products,
+                                 get_all_brands)
 
-products_router = Router()
+get_products_router = Router()
 
 
 class GetProductByCategoryForm(StatesGroup):
@@ -20,17 +22,17 @@ class GetProductByIdForm(StatesGroup):
     enter_id = State()
 
 
-@products_router.message(F.text == 'Все продукты')
+@get_products_router.message(F.text == 'Все продукты')
 async def all_products(message: types.Message):
     await message.answer(f"Products: \n{get_all_products()}")
 
 
-@products_router.message(F.text == 'Последние 10 продуктов')
+@get_products_router.message(F.text == 'Последние 10 продуктов')
 async def last_ten_products(message: types.Message):
     await message.answer(f"Products: \n{get_ten_last_products()}")
 
 
-@products_router.message(F.text == 'Найти по категории')
+@get_products_router.message(F.text == 'Найти по категории')
 async def get_product_by_category(message: Message, state: FSMContext):
     await state.set_state(GetProductByCategoryForm.enter_category)
     await message.answer(
@@ -48,7 +50,7 @@ async def get_product_by_category(message: Message, state: FSMContext):
     )
 
 
-@products_router.message(F.text == 'Cancel')
+@get_products_router.message(F.text == 'Cancel')
 async def cancel(message: types.Message, state: FSMContext):
     current_state = await state.get_state()
     if current_state is None:
@@ -57,7 +59,7 @@ async def cancel(message: types.Message, state: FSMContext):
     await message.answer('Cancelled', reply_markup=types.ReplyKeyboardRemove())
 
 
-@products_router.message(GetProductByCategoryForm.enter_category)
+@get_products_router.message(GetProductByCategoryForm.enter_category)
 async def process_product_category(message: Message, state: FSMContext):
     data = await state.update_data(enter_category=message.text)
     category = data['enter_category']
@@ -68,7 +70,7 @@ async def process_product_category(message: Message, state: FSMContext):
     )
 
 
-@products_router.message(F.text == 'Найти по бренду')
+@get_products_router.message(F.text == 'Найти по бренду')
 async def get_product_by_brand(message: Message, state: FSMContext):
     await state.set_state(GetProductByBrandForm.enter_brand)
     await message.answer(
@@ -86,7 +88,7 @@ async def get_product_by_brand(message: Message, state: FSMContext):
     )
 
 
-@products_router.message(GetProductByBrandForm.enter_brand)
+@get_products_router.message(GetProductByBrandForm.enter_brand)
 async def process_product_brand(message: Message, state: FSMContext):
     data = await state.update_data(enter_brand=message.text)
     brand = data['enter_brand']
@@ -97,7 +99,7 @@ async def process_product_brand(message: Message, state: FSMContext):
     )
 
 
-@products_router.message(F.text == 'Найти по id')
+@get_products_router.message(F.text == 'Найти по id')
 async def state_get_product_by_id(message: Message, state: FSMContext):
     await state.set_state(GetProductByIdForm.enter_id)
     await message.answer(
@@ -115,7 +117,7 @@ async def state_get_product_by_id(message: Message, state: FSMContext):
     )
 
 
-@products_router.message(GetProductByIdForm.enter_id)
+@get_products_router.message(GetProductByIdForm.enter_id)
 async def process_product_id(message: Message, state: FSMContext):
     data = await state.update_data(enter_id=message.text)
     id = data['enter_id']

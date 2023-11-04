@@ -39,7 +39,7 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-CREATE FUNCTION get_product_by_id(product_id UUID)
+CREATE OR REPLACE FUNCTION get_product_by_id(product_id UUID)
 RETURNS TABLE (
     product_name VARCHAR(255),
     product_description VARCHAR(255),
@@ -61,5 +61,13 @@ BEGIN
         JOIN Brand b ON p.brand_id = b.id
     WHERE
         p.id = product_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION delete_product_by_id(product_id UUID)
+RETURNS VOID AS $$
+BEGIN
+    DELETE FROM Product WHERE id = product_id;
 END;
 $$ LANGUAGE plpgsql;

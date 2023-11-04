@@ -1,5 +1,3 @@
-from aiogram.exceptions import TelegramBadRequest
-
 from Python_Sql_Requests.connect_database import run_connection
 
 
