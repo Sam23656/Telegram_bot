@@ -17,6 +17,7 @@ CREATE TABLE Category(
     name VARCHAR(255)
 );
 
+
 CREATE TABLE Product(
     id UUID DEFAULT gen_random_uuid() NOT NULL PRIMARY KEY,
     name VARCHAR(255),

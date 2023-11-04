@@ -6,7 +6,7 @@ from aiogram.filters import Command
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, types
 
-from Routes import products_router
+from Routes import products_router, categories_router
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -21,6 +21,7 @@ async def cmd_start(message: types.Message):
 
 async def main():
     dp.include_router(products_router)
+    dp.include_router(categories_router)
     await dp.start_polling(bot)
 
 

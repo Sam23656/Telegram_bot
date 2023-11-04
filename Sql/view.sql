@@ -19,3 +19,10 @@ FROM Product p
 JOIN Category c ON p.category_id = c.id
 ORDER BY p.id DESC
 LIMIT 5;
+
+
+CREATE OR REPLACE VIEW GetAllCategories AS
+SELECT
+    c.name AS category_name
+FROM
+    Category c;
