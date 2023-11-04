@@ -7,8 +7,11 @@ VALUES
 ('Electronics'),
 ('Clothing');
 
-INSERT INTO Product(name, description, category_id, price)
+INSERT INTO Product(id ,name, description, category_id, price)
 VALUES
-('iPhone 15', 'The latest iPhone', 1, 999.99),
-('T-Shirt', 'A comfortable shirt', 2, 19.99);
+(gen_random_uuid(),'iPhone 15', 'The latest iPhone', 1, 999.99),
+(gen_random_uuid(),'T-Shirt', 'A comfortable shirt', 2, 19.99),
+(gen_random_uuid(),'Jeans', 'A pair of jeans', 2, 29.99),
+(gen_random_uuid(),'Socks', 'A pair of socks', 2, 9.99),
+(gen_random_uuid(),'Shoes', 'A pair of shoes', 2, 49.99);
 

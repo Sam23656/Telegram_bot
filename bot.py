@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, types
 
 from Python_Sql_Requests.get_all_products import get_all_products
+from Python_Sql_Requests.get_five_last_products import get_five_last_products
 
 load_dotenv()
 logging.basicConfig(level=logging.INFO)
@@ -22,6 +23,11 @@ async def cmd_start(message: types.Message):
 @dp.message(Command("AllProducts"))
 async def cmd_start(message: types.Message):
     await message.answer(f"Products: \n{get_all_products()}")
+
+
+@dp.message(Command("Last5Products"))
+async def cmd_start(message: types.Message):
+    await message.answer(f"Products: \n{get_five_last_products()}")
 
 
 async def main():

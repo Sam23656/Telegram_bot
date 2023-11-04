@@ -1,9 +1,9 @@
 from Python_Sql_Requests.connect_database import run_connection
 
 
-def get_all_products():
+def get_five_last_products():
     connect, cursor = run_connection()
-    cursor.execute("SELECT * FROM ProductsWithCategories")
+    cursor.execute("SELECT * FROM Last5Products")
     products = cursor.fetchall()
     result = ""
     i = 1
