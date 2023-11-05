@@ -7,6 +7,3 @@ def get_product_ids_in_cart(client_cart_id: int):
     products = cursor.fetchall()
     products = [elem[0] for elem in products]
     return products
-
-
-print(get_product_ids_in_cart(1))

@@ -17,3 +17,10 @@ def get_all_products():
     if result == '':
         result = 'No products'
     return result
+
+
+def get_all_products_for_xlsx():
+    connect, cursor = run_connection()
+    cursor.execute("SELECT * FROM get_all_products_for_xlsx()")
+    products = cursor.fetchall()
+    return products

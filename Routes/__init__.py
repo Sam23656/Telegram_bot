@@ -9,6 +9,7 @@ from .Client.client_profile import client_profile_router
 from .Cart.add_product_to_cart import add_product_to_cart_router
 from .Cart.get_cart_create_order_products import get_cart_products_router
 from .Order.get_order import order_router
+from .Xlsx.get_xlsx_file import get_xlsx_router
 
 __all__ = [
     'get_products_router',
@@ -21,5 +22,6 @@ __all__ = [
     'client_profile_router',
     'add_product_to_cart_router',
     'get_cart_products_router',
-    'order_router'
+    'order_router',
+    'get_xlsx_router'
 ]

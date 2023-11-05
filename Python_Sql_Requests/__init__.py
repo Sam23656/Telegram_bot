@@ -1,6 +1,6 @@
 from .Products.get_products_by_brands import get_products_by_brand_name
 from .Products.get_products_by_category import get_products_by_category_name
-from .Products.get_all_products import get_all_products
+from .Products.get_all_products import get_all_products, get_all_products_for_xlsx
 from .Products.get_ten_last_products import get_ten_last_products
 from .Categories.get_all_categories import get_all_categories
 from .Categories.get_category_id_by_name import get_category_id_by_name
@@ -25,6 +25,7 @@ from .Cart.get_cart_products_id import get_product_ids_in_cart
 from .Cart.remove_product_from_cart import remove_product_from_cart
 from .Order.get_order_statistic import get_order_statistic
 from .Clients.client_is_admin import get_client_is_admin
+
 
 __all__ = [
     "get_all_products",
@@ -53,5 +54,6 @@ __all__ = [
     "get_product_ids_in_cart",
     "remove_product_from_cart",
     "get_order_statistic",
-    "get_client_is_admin"
+    "get_client_is_admin",
+    "get_all_products_for_xlsx"
 ]
