@@ -3,6 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
+from Access_Restrictions import admin_required
 from Python_Sql_Requests import get_all_categories, get_all_brands, get_category_id_by_name, get_brand_id_by_name, add_product
 
 add_products_router = Router()
@@ -13,6 +14,7 @@ class AddProductByForm(StatesGroup):
 
 
 @add_products_router.message(F.text == 'Добавить продукт')
+@admin_required
 async def add_product_f(message: Message, state: FSMContext):
     await state.set_state(AddProductByForm.enter_str)
     await message.answer(

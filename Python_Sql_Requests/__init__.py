@@ -24,6 +24,7 @@ from .Clients.registration_check import registration_check
 from .Cart.get_cart_products_id import get_product_ids_in_cart
 from .Cart.remove_product_from_cart import remove_product_from_cart
 from .Order.get_order_statistic import get_order_statistic
+from .Clients.client_is_admin import get_client_is_admin
 
 __all__ = [
     "get_all_products",
@@ -51,5 +52,6 @@ __all__ = [
     "registration_check",
     "get_product_ids_in_cart",
     "remove_product_from_cart",
-    "get_order_statistic"
+    "get_order_statistic",
+    "get_client_is_admin"
 ]

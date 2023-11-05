@@ -3,6 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
+from Access_Restrictions import admin_required
 from Python_Sql_Requests import (get_all_products, get_all_products_id, get_product_by_id, get_all_categories,
                                  get_products_by_brand_name, get_products_by_category_name, get_ten_last_products,
                                  get_all_brands)
@@ -28,6 +29,7 @@ async def all_products(message: types.Message):
 
 
 @get_products_router.message(F.text == 'Последние 10 продуктов')
+@admin_required
 async def last_ten_products(message: types.Message):
     await message.answer(f"Products: \n{get_ten_last_products()}")
 

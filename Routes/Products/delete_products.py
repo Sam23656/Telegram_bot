@@ -3,6 +3,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
+from Access_Restrictions import admin_required
 from Python_Sql_Requests import get_all_products_id
 from Python_Sql_Requests import delete_products_by_id
 
@@ -14,6 +15,7 @@ class DeleteProductByIdForm(StatesGroup):
 
 
 @delete_products_router.message(F.text == 'Удалить по id')
+@admin_required
 async def delete_product_by_id_f(message: Message, state: FSMContext):
     await state.set_state(DeleteProductByIdForm.enter_id)
     await message.answer(
