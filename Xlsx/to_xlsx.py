@@ -25,4 +25,20 @@ def delete_xlsx_file():
         return 'Файл не существует, удаление невозможно.'
 
 
-create_xlsx_file()
+def convert_xlsx_file_to_df():
+    xlsx_file_path = './data.xlsx'
+    data_frame = pd.read_excel(xlsx_file_path)
+    return data_frame
+
+
+def get_columns_and_rows(data_frame):
+    result = []
+    for index, row in data_frame.iterrows():
+        product_name = row['Product_Name']
+        description = row['Description']
+        price = row['Price']
+        category_id = row['Category_id']
+        brand_id = row['Brand_id']
+        result.append([product_name, description, category_id, brand_id, price])
+
+    return result

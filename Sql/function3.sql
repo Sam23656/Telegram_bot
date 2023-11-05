@@ -31,3 +31,4 @@ BEGIN
         JOIN Brand b ON p.brand_id = b.id;
 END;
 $$ LANGUAGE plpgsql;
+

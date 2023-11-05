@@ -44,7 +44,7 @@ async def get_product_by_category(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Назад"),
                 ]
             ],
             resize_keyboard=True,
@@ -81,7 +81,7 @@ async def get_product_by_brand(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Назад"),
                 ]
             ],
             resize_keyboard=True,
@@ -118,7 +118,7 @@ async def state_get_product_by_id(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Назад"),
                 ]
             ],
             resize_keyboard=True,
