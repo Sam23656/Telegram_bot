@@ -30,6 +30,7 @@ async def cmd_special_buttons(message: types.Message):
         types.KeyboardButton(text="Обновить продукт"),
         types.KeyboardButton(text="Удалить продукт"),
         types.KeyboardButton(text="Профиль"),
+        types.KeyboardButton(text="Корзина"),
     )
     await message.answer(
         "Выберите действие:",

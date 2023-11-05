@@ -41,7 +41,7 @@ async def add_or_update_client_f(message: Message, state: FSMContext):
 @add_or_update_client_router.message(F.text == 'Пропустить')
 async def cancel(message: types.Message, state: FSMContext):
     chat_id = get_chat_id(message)
-    add_or_update_clients(chat_id, False, get_user_name(message), get_user_surname(message), '', '', '')
+    add_or_update_clients(chat_id, False, get_user_name(message), get_user_surname(message), None, None, None)
     current_state = await state.get_state()
     if current_state is None:
         return

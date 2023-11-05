@@ -25,9 +25,10 @@ BEGIN
     SELECT id
     FROM Client
     WHERE chat_id = client_chat_id
-    ON CONFLICT DO NOTHING;
+    AND NOT EXISTS (SELECT 1 FROM Cart WHERE client_id = id);
 END;
 $$ LANGUAGE plpgsql;
+
 
 
 CREATE OR REPLACE FUNCTION get_client_info_by_chat_id(client_chat_id INT)
@@ -112,3 +113,68 @@ BEGIN
         p.id IN (SELECT product_id FROM Cart_Product WHERE cart_id = client_cart_id);
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_client_id_by_chat_id(client_chat_id INT)
+RETURNS INT AS $$
+BEGIN
+    RETURN (SELECT id FROM Client WHERE chat_id = client_chat_id);
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION create_order(
+    client_id INT
+) RETURNS INT AS $$
+DECLARE
+    new_order_id INT;
+BEGIN
+    INSERT INTO Orders (client_id, order_date)
+    VALUES (client_id, NOW())
+    RETURNING id INTO new_order_id; 
+
+    RETURN new_order_id;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION add_product_to_order(
+    order_id INT,
+    product_id UUID,
+    quantity INT
+) RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Order_Product (order_id, product_id, quantity)
+    VALUES (order_id, product_id, quantity);
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION remove_product_from_cart(
+    client_cart_id INT,
+    client_product_id UUID
+) RETURNS VOID AS $$
+BEGIN
+    DELETE FROM Cart_Product
+    WHERE cart_id = client_cart_id
+    AND product_id = client_product_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION check_client_contact_info(client_id INT)
+RETURNS BOOLEAN AS $$
+BEGIN
+    RETURN (SELECT address IS NOT NULL AND phone IS NOT NULL AND email IS NOT NULL FROM Client WHERE id = client_id);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_product_ids_in_cart(client_cart_id INT)
+RETURNS TABLE (product_id UUID) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT cp.product_id
+    FROM Cart_Product cp
+    JOIN Cart c ON c.id = cp.cart_id
+    WHERE c.client_id = client_cart_id;
+END;
+$$ LANGUAGE plpgsql;
+

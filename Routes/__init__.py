@@ -7,7 +7,7 @@ from .Products.update_products import update_products_router
 from .Client.add_or_update_client import add_or_update_client_router
 from .Client.client_profile import client_profile_router
 from .Cart.add_product_to_cart import add_product_to_cart_router
-from .Cart.get_cart_products import get_cart_products_router
+from .Cart.get_cart_create_order_products import get_cart_products_router
 
 __all__ = [
     'get_products_router',

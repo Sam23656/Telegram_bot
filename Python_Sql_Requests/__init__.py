@@ -17,6 +17,12 @@ from .Clients.get_client_cart_id import get_client_cart_id
 from .Cart.add_product_to_cart import add_product_to_cart
 from .Products.get_product_id_by_name import get_product_id_by_name
 from .Cart.get_cart_products import get_cart_products
+from .Clients.get_client_id_by_chat_id import get_client_id_by_chat_id
+from .Order.create_order import create_order
+from .Order.add_product_to_order import add_product_to_order
+from .Clients.registration_check import registration_check
+from .Cart.get_cart_products_id import get_product_ids_in_cart
+from .Cart.remove_product_from_cart import remove_product_from_cart
 
 __all__ = [
     "get_all_products",
@@ -37,5 +43,11 @@ __all__ = [
     "get_client_cart_id",
     "add_product_to_cart",
     "get_product_id_by_name",
-    "get_cart_products"
+    "get_cart_products",
+    "get_client_id_by_chat_id",
+    "create_order",
+    "add_product_to_order",
+    "registration_check",
+    "get_product_ids_in_cart",
+    "remove_product_from_cart",
 ]
