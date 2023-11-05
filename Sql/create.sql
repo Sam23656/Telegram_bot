@@ -1,6 +1,3 @@
-CREATE DATABASE Product_Shop;
-\c product_shop;
-
 CREATE TABLE Client(
     id SERIAL PRIMARY KEY,
     chat_id INT UNIQUE,
@@ -67,4 +64,6 @@ CREATE INDEX idx_order_product_product_id ON Order_Product (product_id);
 CREATE INDEX idx_cart_client_id ON Cart (client_id);
 CREATE INDEX idx_cart_product_id ON Cart_Product (cart_id);
 CREATE INDEX idx_cart_product_product_id ON Cart_Product (product_id);
+CREATE INDEX idx_product_brand_id ON Product (brand_id);
+CREATE INDEX idx_brand_name ON Brand (name);
 

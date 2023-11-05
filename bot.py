@@ -4,6 +4,7 @@ import os
 
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, types, F
@@ -31,12 +32,14 @@ async def cmd_special_buttons(message: types.Message):
             types.KeyboardButton(text="Найти по категории"),
             types.KeyboardButton(text="Добавить продукт"),
             types.KeyboardButton(text="Обновить продукт"),
-            types.KeyboardButton(text="Удалить продукт"),
+            types.KeyboardButton(text="Удалить по id"),
             types.KeyboardButton(text="Профиль"),
             types.KeyboardButton(text="Корзина"),
+            types.KeyboardButton(text="Добавить"),
             types.KeyboardButton(text="Все заказы"),
             types.KeyboardButton(text="Получить xlsx файл"),
             types.KeyboardButton(text="Отправить xlsx файл"),
+
         )
     else:
         builder.row(
@@ -45,6 +48,7 @@ async def cmd_special_buttons(message: types.Message):
             types.KeyboardButton(text="Найти по бренду"),
             types.KeyboardButton(text="Найти по категории"),
             types.KeyboardButton(text="Профиль"),
+            types.KeyboardButton(text="Добавить"),
             types.KeyboardButton(text="Корзина"),
             types.KeyboardButton(text="Все заказы"),
         )
@@ -60,7 +64,14 @@ async def cancel(message: types.Message, state: FSMContext):
     if current_state is None:
         return
     await state.clear()
-    await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
+    await message.answer('Отменено', reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),)
 
 
 async def main():
