@@ -3,7 +3,7 @@ CREATE DATABASE Product_Shop;
 
 CREATE TABLE Client(
     id SERIAL PRIMARY KEY,
-    chat_id INT,
+    chat_id INT UNIQUE,
     is_admin BOOLEAN,
     name VARCHAR(255),
     surname VARCHAR(255),

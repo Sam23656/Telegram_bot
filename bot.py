@@ -3,9 +3,10 @@ import logging
 import os
 
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 from aiogram.utils.keyboard import ReplyKeyboardBuilder
 from dotenv import load_dotenv
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, F
 
 from Routes import *
 
@@ -13,11 +14,6 @@ load_dotenv()
 logging.basicConfig(level=logging.INFO)
 bot = Bot(token=os.environ.get("BOT_TOKEN_CODE"))
 dp = Dispatcher()
-
-
-@dp.message(Command("start"))
-async def cmd_start(message: types.Message):
-    await message.answer(f"{message.chat.id} - {message.from_user.id} - Hello")
 
 
 @dp.message(Command("Buttons"))
@@ -39,9 +35,18 @@ async def cmd_special_buttons(message: types.Message):
     )
 
 
+@dp.message(F.text == 'Отмена')
+async def cancel(message: types.Message, state: FSMContext):
+    current_state = await state.get_state()
+    if current_state is None:
+        return
+    await state.clear()
+    await message.answer('Отменено', reply_markup=types.ReplyKeyboardRemove())
+
+
 async def main():
     routes = [get_products_router, categories_router, brands_router, delete_products_router, add_products_router,
-              update_products_router]
+              update_products_router, add_or_update_client_router]
     for route in routes:
         dp.include_router(route)
     await dp.start_polling(bot)

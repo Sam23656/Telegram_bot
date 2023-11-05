@@ -120,3 +120,29 @@ BEGIN
         id = product_id;
 END;
 $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION add_or_update_client(
+    client_chat_id INT,
+    is_admin BOOLEAN,
+    name VARCHAR(255),
+    surname VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(255)
+) RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Client (chat_id, is_admin, name, surname, phone, email, address)
+    VALUES (client_chat_id, is_admin, name, surname, phone, email, address)
+    ON CONFLICT (chat_id)
+    DO UPDATE
+    SET
+        is_admin = EXCLUDED.is_admin,
+        name = EXCLUDED.name,
+        surname = EXCLUDED.surname,
+        phone = EXCLUDED.phone,
+        email = EXCLUDED.email,
+        address = EXCLUDED.address;
+END;
+$$ LANGUAGE plpgsql;
+

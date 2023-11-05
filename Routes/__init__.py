@@ -4,6 +4,7 @@ from .Brands.get_brands import brands_router
 from .Products.delete_products import delete_products_router
 from .Products.add_products import add_products_router
 from .Products.update_products import update_products_router
+from .Client.add_or_update_client import add_or_update_client_router
 
 __all__ = [
     'get_products_router',
@@ -12,4 +13,5 @@ __all__ = [
     'delete_products_router',
     'add_products_router',
     'update_products_router',
+    'add_or_update_client_router',
 ]

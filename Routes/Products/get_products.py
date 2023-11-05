@@ -50,15 +50,6 @@ async def get_product_by_category(message: Message, state: FSMContext):
     )
 
 
-@get_products_router.message(F.text == 'Cancel')
-async def cancel(message: types.Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state is None:
-        return
-    await state.clear()
-    await message.answer('Cancelled', reply_markup=types.ReplyKeyboardRemove())
-
-
 @get_products_router.message(GetProductByCategoryForm.enter_category)
 async def process_product_category(message: Message, state: FSMContext):
     data = await state.update_data(enter_category=message.text)

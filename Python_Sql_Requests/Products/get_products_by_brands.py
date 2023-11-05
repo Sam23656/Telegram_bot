@@ -1,7 +1,7 @@
 from Python_Sql_Requests.connect_database import run_connection
 
 
-def get_products_by_brand_name(brand_name):
+def get_products_by_brand_name(brand_name: str):
     connect, cursor = run_connection()
     cursor.execute(f"SELECT * FROM get_products_by_brand('{brand_name}')")
     products = cursor.fetchall()

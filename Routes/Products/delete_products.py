@@ -17,7 +17,7 @@ class DeleteProductByIdForm(StatesGroup):
 async def delete_product_by_id_f(message: Message, state: FSMContext):
     await state.set_state(DeleteProductByIdForm.enter_id)
     await message.answer(
-        f'Сценарий удаляния продукта по id! '
+        f'Сценарий удаления продукта по id! '
         f'Вот список id: \n{get_all_products_id()}'
         f' \nВведи id!',
         reply_markup=ReplyKeyboardMarkup(

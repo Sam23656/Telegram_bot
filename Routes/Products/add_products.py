@@ -16,7 +16,7 @@ class AddProductByForm(StatesGroup):
 async def add_product_f(message: Message, state: FSMContext):
     await state.set_state(AddProductByForm.enter_str)
     await message.answer(
-        f'Сценарий добовления продукта!\n'
+        f'Сценарий добавления продукта!\n'
         f'Вот список категорий: \n{(get_all_categories())}'
         f'Вот список брендов: \n{(get_all_brands())}'
         f'Введите данные продукта\n'
