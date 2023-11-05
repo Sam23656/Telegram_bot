@@ -8,4 +8,3 @@ categories_router = Router()
 @categories_router.message(F.text == 'Все категории')
 async def all_categories(message: types.Message):
     await message.answer(f"Categories: \n{get_all_categories()}")
-

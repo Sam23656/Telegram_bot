@@ -7,7 +7,7 @@ from Access_Restrictions import admin_required
 from Python_Sql_Requests import (get_all_categories, get_all_brands, get_product_by_id, get_category_id_by_name,
                                  get_brand_id_by_name,
                                  update_product)
-from Python_Sql_Requests.Products.get_all_products_id import get_all_products_id
+from Python_Sql_Requests import get_all_products_id
 
 update_products_router = Router()
 
@@ -28,7 +28,7 @@ async def update_product_start(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,
@@ -50,7 +50,7 @@ async def update_product_enter_id(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,

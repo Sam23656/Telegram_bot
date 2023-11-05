@@ -6,4 +6,3 @@ def get_client_id_by_chat_id(chat_id: int):
     cursor.execute(f"SELECT * FROM get_client_id_by_chat_id({chat_id})")
     client_id = cursor.fetchall()[0][0]
     return client_id
-

@@ -66,7 +66,7 @@ async def process_add_or_update_client_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,
@@ -83,7 +83,7 @@ async def process_add_or_update_client_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,
@@ -100,7 +100,7 @@ async def process_add_or_update_client_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,
@@ -117,7 +117,7 @@ async def process_add_or_update_client_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,

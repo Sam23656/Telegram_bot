@@ -15,10 +15,10 @@ async def all_products(message: types.Message):
     builder = InlineKeyboardBuilder()
     builder.add(types.InlineKeyboardButton(
         text="Заказать",
-        callback_data="create_order", )
+        callback_data="create_order")
     )
-    await message.answer(f"Products: \n{get_cart_products(get_client_cart_id(get_chat_id(message)))}"
-                         , reply_markup=builder.as_markup(resize_keyboard=True))
+    await message.answer(f"Products: \n{get_cart_products(get_client_cart_id(get_chat_id(message)))}",
+                         reply_markup=builder.as_markup(resize_keyboard=True))
 
 
 @get_cart_products_router.callback_query(F.data == "create_order")

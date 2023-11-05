@@ -1,9 +1,9 @@
 from Python_Sql_Requests.connect_database import run_connection
 
 
-def get_product_by_id(id: int):
+def get_product_by_id(product_id: int):
     connect, cursor = run_connection()
-    cursor.execute(f"SELECT * FROM get_product_by_id('{id}')")
+    cursor.execute(f"SELECT * FROM get_product_by_id('{product_id}')")
     products = cursor.fetchall()
     result = ""
     i = 1

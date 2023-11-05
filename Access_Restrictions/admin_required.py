@@ -1,9 +1,8 @@
 from functools import wraps
 
-from aiogram import Dispatcher, types
+from aiogram import types
 
-from Python_Sql_Requests import get_client_is_admin
-from Python_Sql_Requests.Clients.get_client_id_by_chat_id import get_client_id_by_chat_id
+from Python_Sql_Requests import get_client_is_admin, get_client_id_by_chat_id
 
 
 def admin_required(func):

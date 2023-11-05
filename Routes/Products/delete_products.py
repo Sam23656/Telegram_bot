@@ -25,7 +25,7 @@ async def delete_product_by_id_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,
@@ -36,11 +36,11 @@ async def delete_product_by_id_f(message: Message, state: FSMContext):
 @delete_products_router.message(DeleteProductByIdForm.enter_id)
 async def process_delete_product_f(message: Message, state: FSMContext):
     data = await state.update_data(enter_id=message.text)
-    id = data['enter_id']
+    product_id = data['enter_id']
     await state.clear()
 
     await message.answer(
-        f"{delete_products_by_id(id)}",
+        f"{delete_products_by_id(product_id)}",
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [

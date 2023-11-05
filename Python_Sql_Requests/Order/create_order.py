@@ -7,4 +7,3 @@ def create_order(client_id: int):
     connect.commit()
     result = cursor.fetchone()
     return result
-

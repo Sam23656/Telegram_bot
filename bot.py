@@ -35,6 +35,8 @@ async def cmd_special_buttons(message: types.Message):
             types.KeyboardButton(text="Профиль"),
             types.KeyboardButton(text="Корзина"),
             types.KeyboardButton(text="Все заказы"),
+            types.KeyboardButton(text="Получить xlsx файл"),
+            types.KeyboardButton(text="Отправить xlsx файл"),
         )
     else:
         builder.row(

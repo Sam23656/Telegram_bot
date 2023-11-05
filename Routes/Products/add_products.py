@@ -4,7 +4,8 @@ from aiogram.fsm.state import State, StatesGroup
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
 from Access_Restrictions import admin_required
-from Python_Sql_Requests import get_all_categories, get_all_brands, get_category_id_by_name, get_brand_id_by_name, add_product
+from Python_Sql_Requests import (get_all_categories, get_all_brands, get_category_id_by_name, get_brand_id_by_name,
+                                 add_product)
 
 add_products_router = Router()
 
@@ -26,7 +27,7 @@ async def add_product_f(message: Message, state: FSMContext):
         reply_markup=ReplyKeyboardMarkup(
             keyboard=[
                 [
-                    KeyboardButton(text="Cancel"),
+                    KeyboardButton(text="Отмена"),
                 ]
             ],
             resize_keyboard=True,

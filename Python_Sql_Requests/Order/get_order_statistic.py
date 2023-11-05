@@ -33,4 +33,3 @@ def get_order_statistic(chat_id: int):
             result2 += f"Product: {product[0]}, Quantity: {product[1]}\n"
 
     return result2
-
