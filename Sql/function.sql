@@ -146,3 +146,28 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION get_client_info_by_chat_id(client_chat_id INT)
+RETURNS TABLE (
+    client_is_admin BOOLEAN,
+    name VARCHAR(255),
+    surname VARCHAR(255),
+    phone VARCHAR(255),
+    email VARCHAR(255),
+    address VARCHAR(255)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        c.is_admin AS client_is_admin,
+        c.name,
+        c.surname,
+        c.phone,
+        c.email,
+        c.address
+    FROM
+        Client c
+    WHERE
+        c.chat_id = client_chat_id;
+END;
+$$ LANGUAGE plpgsql;
+

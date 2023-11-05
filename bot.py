@@ -16,6 +16,7 @@ bot = Bot(token=os.environ.get("BOT_TOKEN_CODE"))
 dp = Dispatcher()
 
 
+@dp.message(F.text == 'Назад')
 @dp.message(Command("Buttons"))
 async def cmd_special_buttons(message: types.Message):
     builder = ReplyKeyboardBuilder()
@@ -28,6 +29,7 @@ async def cmd_special_buttons(message: types.Message):
         types.KeyboardButton(text="Добавить продукт"),
         types.KeyboardButton(text="Обновить продукт"),
         types.KeyboardButton(text="Удалить продукт"),
+        types.KeyboardButton(text="Профиль"),
     )
     await message.answer(
         "Выберите действие:",
@@ -46,7 +48,7 @@ async def cancel(message: types.Message, state: FSMContext):
 
 async def main():
     routes = [get_products_router, categories_router, brands_router, delete_products_router, add_products_router,
-              update_products_router, add_or_update_client_router]
+              update_products_router, add_or_update_client_router, client_profile_router]
     for route in routes:
         dp.include_router(route)
     await dp.start_polling(bot)

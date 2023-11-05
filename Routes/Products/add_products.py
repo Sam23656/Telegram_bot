@@ -42,4 +42,12 @@ async def process_add_product_f(message: Message, state: FSMContext):
     brand = get_brand_id_by_name(brand)
     await message.answer(
         f"{add_product(name, description, category, brand, price)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )

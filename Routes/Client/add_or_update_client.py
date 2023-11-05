@@ -19,7 +19,7 @@ class AddOrUpdateClientForm(StatesGroup):
 
 
 @add_or_update_client_router.message(Command("start"))
-@add_or_update_client_router.message(F.text == 'Обновить клиента')
+@add_or_update_client_router.message(F.text == 'Обновить данные клиента')
 async def add_or_update_client_f(message: Message, state: FSMContext):
     await state.set_state(AddOrUpdateClientForm.enter_name)
     await message.answer(
@@ -130,4 +130,12 @@ async def process_add_or_update_client_f(message: Message, state: FSMContext):
     chat_id = get_chat_id(message)
     await message.answer(
         f'{add_or_update_clients(chat_id, is_admin, name, surname, phone, email, address)}',
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )

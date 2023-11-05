@@ -12,6 +12,7 @@ from .Products.delete_products_by_id import delete_products_by_id
 from .Products.add_product import add_product
 from .Products.update_product import update_product
 from .Clients.add_or_update_clients import add_or_update_clients
+from .Clients.get_client_info import get_client_info_by_id
 
 __all__ = [
     "get_all_products",
@@ -28,4 +29,5 @@ __all__ = [
     "add_product",
     "update_product",
     "add_or_update_clients",
+    "get_client_info_by_id"
 ]

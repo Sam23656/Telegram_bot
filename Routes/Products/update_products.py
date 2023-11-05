@@ -67,4 +67,12 @@ async def update_product_finish(message: Message, state: FSMContext):
     brand = get_brand_id_by_name(brand)
     await message.answer(
         f"{update_product(enter_id, name, description, category, brand, price)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )

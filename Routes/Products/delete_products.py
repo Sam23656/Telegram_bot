@@ -39,4 +39,12 @@ async def process_delete_product_f(message: Message, state: FSMContext):
 
     await message.answer(
         f"{delete_products_by_id(id)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )

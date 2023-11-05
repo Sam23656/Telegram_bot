@@ -58,6 +58,14 @@ async def process_product_category(message: Message, state: FSMContext):
 
     await message.answer(
         f"{get_products_by_category_name(category)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )
 
 
@@ -87,6 +95,14 @@ async def process_product_brand(message: Message, state: FSMContext):
 
     await message.answer(
         f"{get_products_by_brand_name(brand)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )
 
 
@@ -116,4 +132,12 @@ async def process_product_id(message: Message, state: FSMContext):
 
     await message.answer(
         f"{get_product_by_id(id)}",
+        reply_markup=ReplyKeyboardMarkup(
+            keyboard=[
+                [
+                    KeyboardButton(text="Назад")
+                ]
+            ],
+            resize_keyboard=True,
+        ),
     )
