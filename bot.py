@@ -48,7 +48,7 @@ async def cancel(message: types.Message, state: FSMContext):
 
 async def main():
     routes = [get_products_router, categories_router, brands_router, delete_products_router, add_products_router,
-              update_products_router, add_or_update_client_router, client_profile_router]
+              update_products_router, add_or_update_client_router, client_profile_router, add_product_to_cart_router]
     for route in routes:
         dp.include_router(route)
     await dp.start_polling(bot)

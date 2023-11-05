@@ -44,6 +44,18 @@ CREATE TABLE Order_Product(
     quantity INT
 );
 
+CREATE TABLE Cart(
+    id SERIAL PRIMARY KEY,
+    client_id INT REFERENCES Client(id)
+);
+
+CREATE TABLE Cart_Product(
+    id SERIAL PRIMARY KEY,
+    cart_id INT REFERENCES Cart(id),
+    product_id UUID REFERENCES Product(id),
+    quantity INT
+);
+
 
 CREATE INDEX idx_client_chat_id ON Client (chat_id);
 CREATE INDEX idx_category_name ON Category (name);
@@ -52,4 +64,7 @@ CREATE INDEX idx_product_category_id ON Product (category_id);
 CREATE INDEX idx_orders_client_id ON Orders (client_id);
 CREATE INDEX idx_order_product_order_id ON Order_Product (order_id);
 CREATE INDEX idx_order_product_product_id ON Order_Product (product_id);
+CREATE INDEX idx_cart_client_id ON Cart (client_id);
+CREATE INDEX idx_cart_product_id ON Cart_Product (cart_id);
+CREATE INDEX idx_cart_product_product_id ON Cart_Product (product_id);
 

@@ -1,7 +1,3 @@
-INSERT INTO Client(chat_id, is_admin, name, surname, phone, email, address)
-VALUES
-(143956182, true, 'John', 'Doe', '+123456789', 'wZ7pI@example.com', '123 Main St');
-
 INSERT INTO Category(name)
 VALUES
 ('Electronics'),

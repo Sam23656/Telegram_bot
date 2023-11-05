@@ -46,7 +46,15 @@ async def cancel(message: types.Message, state: FSMContext):
     if current_state is None:
         return
     await state.clear()
-    await message.answer('Пропустить', reply_markup=types.ReplyKeyboardRemove())
+    await message.answer(f'Пропуск',
+                         reply_markup=ReplyKeyboardMarkup(
+                             keyboard=[
+                                 [
+                                     KeyboardButton(text="Назад")
+                                 ]
+                             ],
+                             resize_keyboard=True, )
+                         )
 
 
 @add_or_update_client_router.message(AddOrUpdateClientForm.enter_name)

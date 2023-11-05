@@ -13,6 +13,9 @@ from .Products.add_product import add_product
 from .Products.update_product import update_product
 from .Clients.add_or_update_clients import add_or_update_clients
 from .Clients.get_client_info import get_client_info_by_id
+from .Clients.get_client_cart_id import get_client_cart_id
+from .Cart.add_product_to_cart import add_product_to_cart
+from .Products.get_product_id_by_name import get_product_id_by_name
 
 __all__ = [
     "get_all_products",
@@ -29,5 +32,8 @@ __all__ = [
     "add_product",
     "update_product",
     "add_or_update_clients",
-    "get_client_info_by_id"
+    "get_client_info_by_id",
+    "get_client_cart_id",
+    "add_product_to_cart",
+    "get_product_id_by_name"
 ]

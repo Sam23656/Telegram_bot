@@ -121,7 +121,6 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-
 CREATE OR REPLACE FUNCTION add_or_update_client(
     client_chat_id INT,
     is_admin BOOLEAN,
@@ -143,8 +142,15 @@ BEGIN
         phone = EXCLUDED.phone,
         email = EXCLUDED.email,
         address = EXCLUDED.address;
+
+    INSERT INTO Cart (client_id)
+    SELECT id
+    FROM Client
+    WHERE chat_id = client_chat_id
+    ON CONFLICT DO NOTHING;
 END;
 $$ LANGUAGE plpgsql;
+
 
 CREATE OR REPLACE FUNCTION get_client_info_by_chat_id(client_chat_id INT)
 RETURNS TABLE (
@@ -171,3 +177,34 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION get_client_cart_id(client_chat_id INT)
+RETURNS INT AS $$
+DECLARE
+    cart_id INT;
+BEGIN
+    SELECT id INTO cart_id
+    FROM Cart
+    WHERE client_id = (SELECT id FROM Client WHERE chat_id = client_chat_id);
+    
+    RETURN cart_id;
+END;
+$$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION add_product_to_cart(
+    cart_id INT,
+    product_id UUID,
+    quantity INT
+) RETURNS VOID AS $$
+BEGIN
+    INSERT INTO Cart_Product (cart_id, product_id, quantity)
+    VALUES (cart_id, product_id, quantity);
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION get_product_id_by_name(product_name VARCHAR(255))
+RETURNS UUID AS $$
+BEGIN
+    RETURN (SELECT id FROM Product WHERE name = product_name);
+END;
+$$ LANGUAGE plpgsql;
