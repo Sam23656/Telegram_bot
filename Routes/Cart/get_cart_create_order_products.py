@@ -25,16 +25,16 @@ async def all_products(message: types.Message):
 async def create_order_f(callback: types.CallbackQuery):
     if registration_check(get_client_id_by_chat_id(get_chat_id(callback.message))) is False:
         await callback.message.answer("Клиент не зарегистрирован",
-                                       reply_markup=ReplyKeyboardMarkup(
-                                           keyboard=[
-                                               [
-                                                   KeyboardButton(text="Обновить данные клиента")
-                                               ]
-                                           ]
-                                       ))
+                                      reply_markup=ReplyKeyboardMarkup(
+                                          keyboard=[
+                                              [
+                                                  KeyboardButton(text="Обновить данные клиента")
+                                              ]
+                                          ]
+                                      ))
     else:
         order_id = create_order(get_client_id_by_chat_id(get_chat_id(callback.message)))
         for elem in get_product_ids_in_cart(get_client_cart_id(get_chat_id(callback.message))):
             add_product_to_order(order_id, elem, 1)
             remove_product_from_cart(get_client_cart_id(get_chat_id(callback.message)), elem)
-        await callback.message.answer("Заказ оформлен",)
+        await callback.message.answer("Заказ оформлен", )

@@ -8,6 +8,7 @@ from .Client.add_or_update_client import add_or_update_client_router
 from .Client.client_profile import client_profile_router
 from .Cart.add_product_to_cart import add_product_to_cart_router
 from .Cart.get_cart_create_order_products import get_cart_products_router
+from .Order.get_order import order_router
 
 __all__ = [
     'get_products_router',
@@ -19,5 +20,6 @@ __all__ = [
     'add_or_update_client_router',
     'client_profile_router',
     'add_product_to_cart_router',
-    'get_cart_products_router'
+    'get_cart_products_router',
+    'order_router'
 ]

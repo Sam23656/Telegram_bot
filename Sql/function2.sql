@@ -178,3 +178,29 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION get_order_statistics(client_chat_id INT)
+RETURNS TABLE (
+    order_id INT,
+    order_date DATE,
+    product_name VARCHAR(255),
+    quantity INT
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        o.id AS order_id,
+        o.order_date,
+        p.name AS product_name,
+        op.quantity
+    FROM
+        Orders o
+    JOIN
+        Order_Product op ON o.id = op.order_id
+    JOIN
+        Product p ON op.product_id = p.id
+    JOIN
+        Client c ON o.client_id = c.id
+    WHERE
+        c.chat_id = client_chat_id;
+END;
+$$ LANGUAGE plpgsql;
