@@ -86,3 +86,29 @@ BEGIN
     RETURN (SELECT id FROM Product WHERE name = product_name);
 END;
 $$ LANGUAGE plpgsql;
+
+
+CREATE OR REPLACE FUNCTION get_cart_products(client_cart_id INT)
+RETURNS TABLE (
+    product_name VARCHAR(255),
+    product_description VARCHAR(255),
+    product_price DECIMAL(10, 2),
+    category_name VARCHAR(255),
+    brand_name VARCHAR(255)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT
+        p.name AS product_name,
+        p.description AS product_description,
+        p.price AS product_price,
+        c.name AS category_name,
+        b.name AS brand_name
+    FROM
+        Product p
+        JOIN Category c ON p.category_id = c.id
+        JOIN Brand b ON p.brand_id = b.id
+    WHERE
+        p.id IN (SELECT product_id FROM Cart_Product WHERE cart_id = client_cart_id);
+END;
+$$ LANGUAGE plpgsql;

@@ -16,6 +16,7 @@ from .Clients.get_client_info import get_client_info_by_id
 from .Clients.get_client_cart_id import get_client_cart_id
 from .Cart.add_product_to_cart import add_product_to_cart
 from .Products.get_product_id_by_name import get_product_id_by_name
+from .Cart.get_cart_products import get_cart_products
 
 __all__ = [
     "get_all_products",
@@ -35,5 +36,6 @@ __all__ = [
     "get_client_info_by_id",
     "get_client_cart_id",
     "add_product_to_cart",
-    "get_product_id_by_name"
+    "get_product_id_by_name",
+    "get_cart_products"
 ]
