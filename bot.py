@@ -52,6 +52,7 @@ async def cmd_special_buttons(message: types.Message):
             types.KeyboardButton(text="Корзина"),
             types.KeyboardButton(text="Все заказы"),
         )
+    builder.adjust(4)
     await message.answer(
         "Выберите действие:",
         reply_markup=builder.as_markup(resize_keyboard=True),
