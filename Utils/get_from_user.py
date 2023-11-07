@@ -1,5 +1,5 @@
 def get_chat_id(message):
-    return message.chat.id
+    return str(message.chat.id)
 
 
 def get_user_name(message):

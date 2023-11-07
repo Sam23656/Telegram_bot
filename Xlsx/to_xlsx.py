@@ -13,11 +13,10 @@ def create_xlsx_file():
     writer = pd.ExcelWriter('./example.xlsx', engine='xlsxwriter')
     data_frame.to_excel(writer, 'Sheet1')
     writer._save()
-    os.rename('./example.xlsx', './data.xlsx')
 
 
 def delete_xlsx_file():
-    xlsx_file_path = './data.xlsx'
+    xlsx_file_path = './example.xlsx'
     if os.path.exists(xlsx_file_path):
         os.remove(xlsx_file_path)
         return 'Файл удален успешно.'
@@ -26,7 +25,7 @@ def delete_xlsx_file():
 
 
 def convert_xlsx_file_to_df():
-    xlsx_file_path = './data.xlsx'
+    xlsx_file_path = './example.xlsx'
     data_frame = pd.read_excel(xlsx_file_path)
     return data_frame
 

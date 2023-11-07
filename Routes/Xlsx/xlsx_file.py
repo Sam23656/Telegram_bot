@@ -19,7 +19,7 @@ class GetXlsxForm(StatesGroup):
 @admin_required
 async def upload_xlsx_f(message: types.Message):
     create_xlsx_file()
-    await message.answer_document(FSInputFile('./data.xlsx'))
+    await message.answer_document(FSInputFile('./example.xlsx'))
     delete_xlsx_file()
 
 
@@ -48,7 +48,7 @@ async def process_product_brand(message: Message, state: FSMContext):
         file_info = await bot.get_file(file_id=file_id)
         file = await bot.download_file(file_info.file_path)
 
-        with open('data.xlsx', 'wb') as f:
+        with open('example.xlsx', 'wb') as f:
             f.write(file.read())
 
         file = convert_xlsx_file_to_df()

@@ -1,6 +1,6 @@
 
 CREATE OR REPLACE FUNCTION add_or_update_client(
-    client_chat_id INT,
+    client_chat_id VARCHAR(255),
     is_admin BOOLEAN,
     name VARCHAR(255),
     surname VARCHAR(255),
@@ -22,16 +22,14 @@ BEGIN
         address = EXCLUDED.address;
 
     INSERT INTO Cart (client_id)
-    SELECT id
-    FROM Client
-    WHERE chat_id = client_chat_id
-    AND NOT EXISTS (SELECT 1 FROM Cart WHERE client_id = id);
+    VALUES ((SELECT id FROM Client WHERE chat_id = client_chat_id));
+
 END;
 $$ LANGUAGE plpgsql;
 
 
 
-CREATE OR REPLACE FUNCTION get_client_info_by_chat_id(client_chat_id INT)
+CREATE OR REPLACE FUNCTION get_client_info_by_chat_id(client_chat_id VARCHAR(255))
 RETURNS TABLE (
     client_is_admin BOOLEAN,
     name VARCHAR(255),
@@ -56,7 +54,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION get_client_cart_id(client_chat_id INT)
+CREATE OR REPLACE FUNCTION get_client_cart_id(client_chat_id VARCHAR(255))
 RETURNS INT AS $$
 DECLARE
     cart_id INT;
@@ -114,7 +112,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION get_client_id_by_chat_id(client_chat_id INT)
+CREATE OR REPLACE FUNCTION get_client_id_by_chat_id(client_chat_id VARCHAR(255))
 RETURNS INT AS $$
 BEGIN
     RETURN (SELECT id FROM Client WHERE chat_id = client_chat_id);
@@ -178,7 +176,7 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
-CREATE OR REPLACE FUNCTION get_order_statistics(client_chat_id INT)
+CREATE OR REPLACE FUNCTION get_order_statistics(client_chat_id VARCHAR(255))
 RETURNS TABLE (
     order_id INT,
     order_date DATE,

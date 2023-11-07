@@ -1,9 +1,9 @@
 from Python_Sql_Requests.connect_database import run_connection
 
 
-def get_order_statistic(chat_id: int):
+def get_order_statistic(chat_id: str):
     connect, cursor = run_connection()
-    cursor.execute(f"SELECT * FROM get_order_statistics({chat_id})")
+    cursor.execute(f"SELECT * FROM get_order_statistics('{chat_id}')")
     result = cursor.fetchall()
 
     order_id = None

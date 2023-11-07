@@ -1,9 +1,9 @@
 CREATE TABLE Client(
     id SERIAL PRIMARY KEY,
-    chat_id INT UNIQUE,
+    chat_id VARCHAR(255) UNIQUE,
     is_admin BOOLEAN,
-    name VARCHAR(255),
-    surname VARCHAR(255),
+    name VARCHAR(255)  ,
+    surname VARCHAR(255) ,
     phone VARCHAR(255),
     email VARCHAR(255),
     address VARCHAR(255)

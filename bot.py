@@ -24,34 +24,33 @@ dp = Dispatcher()
 async def cmd_special_buttons(message: types.Message):
     builder = ReplyKeyboardBuilder()
     if get_client_is_admin(get_client_id_by_chat_id(message.from_user.id)) is True:
-        builder.row(
-            types.KeyboardButton(text="Все продукты"),
-            types.KeyboardButton(text="Последние 10 продуктов"),
-            types.KeyboardButton(text="Найти по id"),
-            types.KeyboardButton(text="Найти по бренду"),
-            types.KeyboardButton(text="Найти по категории"),
-            types.KeyboardButton(text="Добавить продукт"),
-            types.KeyboardButton(text="Обновить продукт"),
-            types.KeyboardButton(text="Удалить по id"),
-            types.KeyboardButton(text="Профиль"),
-            types.KeyboardButton(text="Корзина"),
-            types.KeyboardButton(text="Добавить"),
-            types.KeyboardButton(text="Все заказы"),
-            types.KeyboardButton(text="Получить xlsx файл"),
-            types.KeyboardButton(text="Отправить xlsx файл"),
-
-        )
+            builder.row(
+                types.KeyboardButton(text="Все продукты"),
+                types.KeyboardButton(text="Последние 10 продуктов"),
+                types.KeyboardButton(text="Найти по id"),
+                types.KeyboardButton(text="Найти по бренду"),
+                types.KeyboardButton(text="Найти по категории"),
+                types.KeyboardButton(text="Добавить продукт"),
+                types.KeyboardButton(text="Обновить продукт"),
+                types.KeyboardButton(text="Удалить по id"),
+                types.KeyboardButton(text="Профиль"),
+                types.KeyboardButton(text="Корзина"),
+                types.KeyboardButton(text="Добавить"),
+                types.KeyboardButton(text="Все заказы"),
+                types.KeyboardButton(text="Получить xlsx файл"),
+                types.KeyboardButton(text="Отправить xlsx файл"),
+            )
     else:
         builder.row(
-            types.KeyboardButton(text="Все продукты"),
-            types.KeyboardButton(text="Найти по id"),
-            types.KeyboardButton(text="Найти по бренду"),
-            types.KeyboardButton(text="Найти по категории"),
-            types.KeyboardButton(text="Профиль"),
-            types.KeyboardButton(text="Добавить"),
-            types.KeyboardButton(text="Корзина"),
-            types.KeyboardButton(text="Все заказы"),
-        )
+                types.KeyboardButton(text="Все продукты"),
+                types.KeyboardButton(text="Найти по id"),
+                types.KeyboardButton(text="Найти по бренду"),
+                types.KeyboardButton(text="Найти по категории"),
+                types.KeyboardButton(text="Профиль"),
+                types.KeyboardButton(text="Добавить"),
+                types.KeyboardButton(text="Корзина"),
+                types.KeyboardButton(text="Все заказы"),
+            )
     builder.adjust(4)
     await message.answer(
         "Выберите действие:",
